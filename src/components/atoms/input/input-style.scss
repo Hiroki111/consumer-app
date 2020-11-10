@@ -1,0 +1,102 @@
+/* common
+-------------------------------------------------- */
+
+.input {
+  position: relative; // context for labels
+
+  color: var(--c-text-regular);
+  font-size: var(--fz-n);
+}
+
+.decor {
+  display: flex;
+
+  align-items: center;
+
+  width: 100%;
+  height: calc((2 * var(--space-m)) + var(--space-l));
+
+  padding: var(--space-m) var(--space-m);
+
+  border: 1px solid var(--c-shade-light);
+  border-radius: 3px;
+
+  outline: none;
+  background-color: var(--c-bg);
+  box-shadow: none;
+
+  // inherited from the parent
+  color: inherit;
+  font-size: inherit;
+  line-height: var(--lh-regular);
+
+  &:hover {
+    border-color: var(--c-shade-dark);
+  }
+}
+
+.element {
+  display: block;
+
+  flex: 1 1 auto;
+
+  width: 100%;
+  height: var(--space-l);
+
+  border: 0;
+  outline: none;
+  background-color: transparent;
+  box-shadow: none;
+
+  color: inherit;
+}
+
+.label {
+  flex: 1 1 auto;
+
+  width: 100%;
+
+  color: var(--c-text-light);
+}
+
+.wrapper {
+  position: relative;
+
+  flex: 3 1 auto;
+}
+
+/* /common
+-------------------------------------------------- */
+
+/* states
+-------------------------------------------------- */
+
+.__is-active {
+  color: var(--c-text-regular);
+
+  .decor {
+    border-color: var(--c-shade-dark);
+  }
+}
+
+.__is-disabled {
+  color: var(--c-text-light);
+
+  .decor {
+    border-color: var(--c-text-light);
+    background-color: var(--c-shade-lighter);
+
+    cursor: not-allowed;
+  }
+}
+
+.__is-error {
+  color: var(--c-util-error-regular);
+
+  .decor {
+    border-color: var(--c-util-error-regular);
+  }
+}
+
+/* /states
+-------------------------------------------------- */

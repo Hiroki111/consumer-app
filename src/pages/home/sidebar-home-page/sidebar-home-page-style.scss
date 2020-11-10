@@ -1,0 +1,13 @@
+.side {
+  flex-shrink: 0; // prevent down-sizing
+  // fixed size by design
+  width: 344px;
+
+  // prevents sidebar to overlap modal
+  z-index: 1;
+
+  background-color: var(--c-bg);
+  box-shadow: var(--elevation-1);
+
+  padding: var(--space-n);
+}

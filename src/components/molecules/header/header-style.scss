@@ -1,0 +1,48 @@
+/* Header
+-------------------------------------------------- */
+
+.header {
+  display: flex;
+
+  flex-flow: row nowrap;
+  align-items: center;
+
+  padding: var(--space-s) var(--space-n);
+
+  background: var(--c-brand-primary-regular);
+  color: var(--c-text-inv-regular);
+}
+
+.header a {
+  color: var(--c-text-inv-regular);
+}
+
+/* /Header
+-------------------------------------------------- */
+
+/* Logo
+-------------------------------------------------- */
+
+.logo {
+  flex: 0;
+  line-height: var(--lh-compact);
+}
+
+/* /Logo
+-------------------------------------------------- */
+
+/* Nav
+-------------------------------------------------- */
+
+.nav {
+  flex: 1;
+
+  margin: 0 var(--space-n);
+}
+
+.nav__item {
+  margin-right: var(--space-n);
+}
+
+/* /Nav
+-------------------------------------------------- */

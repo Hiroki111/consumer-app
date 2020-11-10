@@ -1,0 +1,59 @@
+/* common
+-------------------------------------------------- */
+
+.select {
+  color: var(--c-text-regular);
+  font-size: var(--fz-n);
+}
+
+.content {
+  position: relative;
+}
+
+.element {
+  composes: decor from '../input/input-style.scss';
+
+  // size-medium
+  height: calc((2 * var(--space-m)) + var(--space-l));
+
+  padding: var(--space-m) var(--space-m);
+
+  outline: none;
+  user-select: none;
+
+  color: inherit;
+  font-size: inherit;
+  line-height: var(--lh-regular);
+}
+
+.label {
+  composes: label from '../input/input-style.scss';
+}
+
+/* /common
+-------------------------------------------------- */
+
+/* states
+-------------------------------------------------- */
+
+.__is-disabled {
+  color: var(--c-text-light);
+
+  .element {
+    border-color: var(--c-text-light);
+    background-color: var(--c-shade-lighter);
+
+    cursor: not-allowed;
+  }
+}
+
+.__is-error {
+  color: var(--c-util-error-regular);
+
+  .element {
+    border-color: var(--c-util-error-regular);
+  }
+}
+
+/* /states
+-------------------------------------------------- */

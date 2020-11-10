@@ -1,0 +1,41 @@
+/* common
+-------------------------------------------------- */
+
+.button {
+  display: inline-block;
+  vertical-align: middle;
+
+  height: calc(var(--lh-loose) * var(--fz-n) + var(--space-m) * 2);
+  padding: calc(var(--space-m) - 1px) var(--space-l);
+
+  border: 1px solid;
+  border-radius: 3px;
+  box-shadow: none;
+
+  font-size: var(--fz-n);
+  white-space: nowrap;
+  line-height: var(--lh-regular);
+  font-weight: normal;
+  text-align: center;
+  text-decoration: none;
+
+  cursor: pointer;
+  appearance: none;
+  user-select: none;
+
+  background: var(--c-brand-accent-regular);
+  color: var(--c-text-inv-regular);
+
+  &:hover {
+    text-decoration: none;
+  }
+
+  &:active {
+    background: var(--c-brand-secondary-dark);
+
+    transform: translateY(1px);
+  }
+}
+
+/* /common
+-------------------------------------------------- */

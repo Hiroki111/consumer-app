@@ -1,0 +1,99 @@
+/* GLOBAL VARIABLES
+---------------------------------------------------------------------------------- */
+
+/* Colors
+-------------------------------------------------- */
+
+:root {
+  --c-text-regular: #0d4659;
+  --c-text-light: #666;
+
+  --c-text-inv-regular: #fff;
+  --c-text-inv-light: #999;
+
+  --c-bg: #fff;
+  --c-shade-lighter: #f2f2f2;
+  --c-shade-light: #d9d9d9;
+  --c-shade-regular: #999;
+  --c-shade-dark: #666;
+  --c-shade-darker: #0d4659;
+
+  --c-brand-primary-light: #ff8c1a;
+  --c-brand-primary-regular: #ff8000;
+  --c-brand-primary-dark: #e67300;
+
+  --c-brand-accent-light: #237bf6;
+  --c-brand-accent-regular: #0a6cf5;
+  --c-brand-accent-dark: #0961dc;
+
+  --c-util-success-regular: #0aa64f;
+  --c-util-error-regular: #e60003;
+}
+
+/* /Colors
+-------------------------------------------------- */
+
+/* Font size
+-------------------------------------------------- */
+
+:root {
+  --fz-root: 14px;
+  --fz-scale: 1;
+  --fz-scale-h1: 1.69;
+  --fz-scale-h2: 1.52;
+  --fz-scale-h3: 1.38;
+  --fz-scale-h4: 1.08;
+  --fz-scale-h5: 1.12;
+
+  --fz-h1: calc(2.5rem * var(--fz-scale-h1));
+  --fz-h2: calc(2.07rem * var(--fz-scale-h2));
+  --fz-h3: calc(1.71rem * var(--fz-scale-h3));
+  --fz-h4: calc(1.71rem * var(--fz-scale-h4));
+  --fz-h5: calc(1.21rem * var(--fz-scale-h5));
+
+  --fz-xxl: var(--fz-h3);
+  --fz-xl: var(--fz-h4);
+  --fz-l: var(--fz-h5);
+
+  --fz-n: calc(1rem * var(--fz-scale));
+  --fz-m: calc(0.86rem * var(--fz-scale));
+  --fz-s: calc(0.72rem * var(--fz-scale));
+}
+
+/* /Font size
+-------------------------------------------------- */
+
+/* Line-height
+-------------------------------------------------- */
+
+:root {
+  --lh-null: 0;
+  --lh-reset: 1;
+  --lh-compact: 1.2;
+  --lh-regular: 1.5;
+  --lh-loose: 1.7;
+}
+
+/* /Line-height
+-------------------------------------------------- */
+
+/* Spacing
+-------------------------------------------------- */
+
+:root {
+  --space-unit: 0.57rem;
+
+  --space-xs: calc(0.25 * var(--space-unit));
+  --space-s: calc(0.5 * var(--space-unit));
+  --space-m: calc(1 * var(--space-unit));
+  --space-n: calc(2 * var(--space-unit));
+  --space-l: calc(3 * var(--space-unit));
+  --space-xl: calc(4 * var(--space-unit));
+  --space-xxl: calc(8 * var(--space-unit));
+}
+
+/* /Spacing
+-------------------------------------------------- */
+
+/* /GLOBAL VARIABLES
+---------------------------------------------------------------------------------- */

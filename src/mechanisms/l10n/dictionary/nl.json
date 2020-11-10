@@ -1,0 +1,20 @@
+{
+  "messages": {
+    "components": {
+      "header": {
+        "home": "NL Restaurants"
+      },
+      "restaurantSorting": {
+        "label": "Sort by",
+        "noSorting": "No sorting",
+        "alphabetically": "Alphabetically",
+        "byMinimumOrderValue": "By minimum order value"
+      }
+    },
+    "pages": {
+      "home": {
+        "content": "<b>NL Home page</b><p>Home page in Nederlands</p>"
+      }
+    }
+  }
+}

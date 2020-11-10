@@ -1,0 +1,57 @@
+/* common
+-------------------------------------------------- */
+
+.heading {
+  margin: 0;
+
+  color: inherit;
+  line-height: var(--lh-compact);
+}
+
+/* /common
+-------------------------------------------------- */
+
+/* levels
+-------------------------------------------------- */
+
+.__level-1 {
+  font-size: var(--fz-h1);
+}
+
+.__level-2 {
+  font-size: var(--fz-h2);
+}
+
+.__level-3 {
+  font-size: var(--fz-h3);
+}
+
+.__level-4 {
+  font-size: var(--fz-h4);
+}
+
+.__level-5 {
+  font-size: var(--fz-h5);
+  line-height: var(--lh-regular);
+}
+
+/* /levels
+-------------------------------------------------- */
+
+/* modifiers
+-------------------------------------------------- */
+
+.__align-left {
+  text-align: left;
+}
+
+.__align-right {
+  text-align: right;
+}
+
+.__align-center {
+  text-align: center;
+}
+
+/* /modifiers
+-------------------------------------------------- */

@@ -1,0 +1,276 @@
+/* common
+-------------------------------------------------- */
+
+.overlay {
+  @include cover(fixed);
+
+  display: flex;
+
+  align-items: flex-start;
+  justify-content: center;
+
+  z-index: var(--z-index-overlay);
+
+  overflow-y: auto;
+  background-color: var(--c-overlay-regular);
+}
+
+.modal {
+  position: relative;
+
+  display: flex;
+
+  flex-direction: column;
+
+  z-index: var(--z-index-modal);
+
+  width: 100%;
+  height: 100%;
+
+  background-color: var(--c-bg);
+
+  @include respond($mq-desktop) {
+    top: calc(var(--space-n) * 6);
+
+    max-width: 568px;
+    height: auto;
+    min-height: 256px;
+
+    // create bottom offset to allow better scrolling range
+    margin-bottom: calc(var(--space-n) * 6);
+  }
+}
+
+.wrapper {
+  display: flex;
+
+  flex-direction: column;
+
+  height: 100%;
+  overflow-y: auto;
+}
+
+.header {
+  position: relative;
+
+  display: flex;
+
+  padding: var(--space-n);
+
+  color: var(--c-text-regular);
+}
+
+.header-wrapper {
+  position: relative;
+
+  width: 100%;
+}
+
+.header-content {
+  position: relative;
+
+  flex: 1 0 auto;
+  z-index: inherit;
+}
+
+.close {
+  @include align-vertical();
+  right: 0;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: var(--space-l);
+  height: var(--space-l);
+
+  cursor: pointer;
+}
+
+.back {
+  @include align-vertical();
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: var(--space-l);
+  height: var(--space-l);
+}
+
+.content-wrapper {
+  padding: var(--space-n);
+
+  @include respond(0, $mq-mobile-max) {
+    flex: 1 1 auto;
+  }
+}
+
+.sub-heading {
+  margin-top: var(--space-xs);
+}
+
+.footer {
+  padding: var(--space-m);
+
+  border-top: var(--border-regular-lighter);
+}
+
+/* /common
+-------------------------------------------------- */
+
+/* modifiers
+-------------------------------------------------- */
+
+// todo: remove when helper component is used
+.__hidden {
+  @include hidden-pseudo();
+}
+
+.__background {
+  background-color: var(--c-shade-lighter);
+}
+
+.__mode-plain {
+  .header-content {
+    max-width: calc(100% - var(--space-xl));
+  }
+
+  .heading {
+    @include truncate();
+
+    /* set all children to inline to ensure
+        truncate to be applied properly */
+    > * {
+      display: inline-block;
+    }
+  }
+
+  .content-wrapper {
+    padding: 0 var(--space-n) var(--space-n);
+  }
+}
+
+.__mode-brand {
+  .header {
+    padding: var(--space-l) var(--space-n);
+    background-color: var(--c-brand-primary-regular);
+  }
+
+  .header-content {
+    max-width: calc(100% - (var(--space-xl) * 2));
+
+    margin: 0 auto;
+
+    text-align: center;
+  }
+
+  .heading {
+    @include truncate();
+  }
+}
+
+.__mode-brand-hero {
+  .header {
+    $offsetHeader: calc(var(--space-xl) * 1.5);
+
+    z-index: inherit;
+
+    margin-bottom: $offsetHeader;
+    padding: var(--space-l) var(--space-n) 0;
+    background-color: transparent;
+
+    // diagonal header bottom
+    &:before {
+      content: '';
+
+      position: absolute;
+      top: 0;
+      left: 0;
+
+      width: 100%;
+      // set height to element height + offset to ensure content margin
+      // offset = diagonal bottom height
+      height: calc(100% + #{$offsetHeader});
+
+      background-color: var(--c-brand-primary-regular);
+
+      // define element clippath to create diagonal shape
+      // defines directions: top, right, bottom, left
+      // values: Y-axis/height X-axis/width
+      clip-path: polygon(0 0, 0 100%, 100% 82.5%, 100% 0);
+    }
+  }
+
+  .header-wrapper {
+    display: flex;
+
+    flex-direction: row;
+  }
+
+  .header-content {
+    max-width: calc(100% - var(--space-xl));
+    // min-height: title-font-size * line-height + sub-heading-height * line-height + margin-top
+    min-height: calc(
+      var(--fz-h4) * var(--lh-compact) + var(--fz-n) * var(--lh-reset) + var(--space-xs)
+    );
+  }
+
+  .close-wrapper {
+    position: absolute;
+    right: 0;
+
+    display: flex;
+
+    justify-content: flex-end;
+  }
+
+  .close {
+    position: relative;
+    top: initial;
+    transform: none;
+  }
+}
+
+:global {
+  body.__modal-is-open {
+    // todo: this alone does not work properly for iOS
+    // iOS safari "ignores" this property cause touch events still fire
+    // maybe look into this: https://github.com/willmcpo/body-scroll-lock
+    overflow: hidden;
+  }
+}
+
+/* /modifiers
+-------------------------------------------------- */
+
+/* sticky head
+-------------------------------------------------- */
+
+.__overlay-no-scroll {
+  overflow: hidden;
+}
+
+.__sticky-header {
+  overflow: hidden;
+
+  @include respond($mq-desktop) {
+    // ensure modal is not taller than: viewport - top - margin-bottom
+    max-height: calc(100% - (var(--space-n) * 6) - (var(--space-n) * 2));
+  }
+
+  .content-wrapper {
+    position: relative;
+
+    overflow: auto;
+  }
+}
+
+.__sticky-header.__mode-plain .header {
+  border-bottom: var(--border-regular-lighter);
+}
+
+/* /sticky head
+-------------------------------------------------- */

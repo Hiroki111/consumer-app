@@ -1,0 +1,20 @@
+{
+  "messages": {
+    "components": {
+      "header": {
+        "home": "Restaurants"
+      },
+      "restaurantSorting": {
+        "label": "Sort by",
+        "noSorting": "No sorting",
+        "alphabetically": "Alphabetically",
+        "byMinimumOrderValue": "By minimum order value"
+      }
+    },
+    "pages": {
+      "home": {
+        "content": "<b>Home page</b><p>Home page in English</p>"
+      }
+    }
+  }
+}

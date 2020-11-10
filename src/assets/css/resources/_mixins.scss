@@ -1,0 +1,299 @@
+// Assigns a default value to $SNACKS_ROOT_PATH
+// $SNACKS_ROOT_PATH can be determined by the consumer application and
+// it's relative to the entry SCSS file
+$SNACKS_ROOT_PATH: '' !default;
+
+////
+/// @group 03-mixins
+////
+
+/// Function to dynamically set media-query expression depending on provided values.
+/// @group 05-functions
+/// @param {number|string} $min - media-query min-width value
+/// @param {string} $min [null] - media-query max-width value
+/// @return {string}
+/// @example scss - Usage
+///     @media #{media-expression($min, $max)} {
+///         &:hover {
+///             @content;
+///         }
+///     }
+
+@function media-expression($min, $max: null) {
+  $min: '(min-width: #{$min})';
+  $expression: 'screen and #{$min}';
+
+  @if $max {
+    $max: '(max-width: #{$max})';
+    $expression: $expression + 'and #{$max}';
+  }
+
+  @return $expression;
+}
+
+/// Add media-query and :hover pseudo class and wrap provided content with it.
+/// @param {string} $min [$mq-desktop] - min-width media-query value
+/// @param {string} $max [null] - max-width media-query value
+/// @content the content will be wrapped in media-query and :hover pseudo class
+/// @require $mq-desktop
+/// @require media-expression
+/// @example scss - Usage
+///     @include hover() {
+///         text-decoration: underline;
+///     }
+
+@mixin hover($min: $mq-desktop, $max: null) {
+  @media #{media-expression($min, $max)} {
+    &:hover {
+      @content;
+    }
+  }
+}
+
+/// Add media-query and :focus pseudo class and wrap provided content with it.
+/// @param {string} $min [$mq-desktop] - min-width media-query value
+/// @param {string} $max [null] - max-width media-query value
+/// @content the content will be wrapped in media-query and :focus pseudo class
+/// @require $mq-desktop
+/// @require media-expression
+/// @example scss - Usage
+///     @include focus() {
+///         @include custom-focus();
+///     }
+
+@mixin focus($min: $mq-desktop, $max: null) {
+  @media #{media-expression($min, $max)} {
+    &:focus {
+      @content;
+    }
+  }
+}
+
+/// Add media-query and :active pseudo class and wrap provided content with it.
+/// @param {string} $min [$mq-desktop] - min-width media-query value
+/// @param {string} $max [null] - max-width media-query value
+/// @content the content will be wrapped in media-query and :active pseudo class
+/// @require $mq-desktop
+/// @require media-expression
+/// @example scss - Usage
+///     @include active() {
+///         color: $color-link-regular-active;
+///     }
+
+@mixin active($min: $mq-desktop, $max: null) {
+  @media #{media-expression($min, $max)} {
+    &:active {
+      @content;
+    }
+  }
+}
+
+/// Add font-face font sources (woff2, woff, ttf) from provided path.
+/// @group 03-mixins
+/// @param {string} $font-path - path to font source
+/// @example scss - Usage
+///     @include font-src(#{$path});
+
+@mixin font-src($font-path) {
+  src: url(#{$SNACKS_ROOT_PATH}#{$font-path}.woff2) format('woff2'),
+    url(#{$SNACKS_ROOT_PATH}#{$font-path}.woff) format('woff'),
+    url(#{$SNACKS_ROOT_PATH}#{$font-path}.ttf) format('truetype');
+}
+
+/// Wrap provided content in browser specific input placeholder pseudo classes.
+/// @group 03-mixins
+/// @content Returns content wrapped in prefixed placeholder pseudo classes.
+/// @example scss - Usage
+///     @include placeholder() {
+///         color: formStyle($form-regular, placeholder-color);
+///     }
+
+/* stylelint-disable selector-no-vendor-prefix */
+@mixin placeholder() {
+  &::-webkit-input-placeholder {
+    @content;
+  }
+
+  &::-moz-placeholder {
+    @content;
+  }
+
+  &:-moz-placeholder {
+    @content;
+  }
+
+  &:-ms-input-placeholder {
+    @content;
+  }
+}
+/* stylelint-enable selector-no-vendor-prefix */
+
+/// Shorten to single line text to fit width and add <code>...</code> at the end.
+/// @example scss - Usage
+///     @include truncate();
+
+@mixin truncate() {
+  overflow: hidden;
+
+  white-space: nowrap;
+
+  text-overflow: ellipsis;
+}
+
+/// Make the element span entire width and height of the page. <br />
+/// Possible values: <i>absolute (default), fixed</i>
+/// @group 03-mixins
+/// @param {string} $position [absolute] - define position property
+/// @example scss - Usage
+///     @include cover(fixed);
+
+@mixin cover($position: absolute) {
+  position: $position;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+/// Wrap nested content in media-query build with provided values.
+/// @group 03-mixins
+/// @param {number|string} $min - media-query min-width value
+/// @param {string} $min [null] - media-query max-width value
+/// @content Returns content wrapped in media-query.
+/// @require media-expression
+/// @example scss - Usage
+///     @include respond($mq-desktop, $mq-desktop-max) {
+///         top: 2px;
+///
+///         font-size: $icon-size-n;
+///     }
+
+@mixin respond($min, $max: null) {
+  @media #{media-expression($min, $max)} {
+    @content;
+  }
+}
+
+/// Wrap nested content in media-query of static values for tablet view with provided orientation. <br />
+/// Possible values: <i>portrait, landscape</i>
+/// @group 03-mixins
+/// @param {string} $orientation [portrait] - media-query orientation value
+/// @content Returns content wrapped in media-query.
+/// @require $ipad-width
+/// @require $ipad-height
+/// @example scss - Usage
+///     @include respondIpad(landscape) {
+///         width: $ipad-actual-height;
+///         height: $ipad-actual-width;
+///     }
+
+@mixin respondIpad($orientation: portrait) {
+  @media only screen and (device-width: #{$ipad-width}) and (device-height: #{$ipad-height}) and (orientation: #{$orientation}) {
+    @content;
+  }
+}
+
+/// Align the element vertically centered (y-axis).
+/// @group 03-mixins
+/// @param {string} $position [absolute] - define position property
+/// @example scss - Usage
+///     @include align-vertical();
+
+@mixin align-vertical($position: absolute) {
+  position: $position;
+  top: 50%;
+
+  transform: translateY(-50%);
+}
+
+/// Align the element vertically and horizontally centered (y-axis & x-axis).
+/// @group 03-mixins
+/// @param {string} $position [absolute] - define position property
+/// @example scss - Usage
+///     @include align-centered();
+
+@mixin align-centered($position: absolute) {
+  position: $position;
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+}
+
+/// Force hardware acceleration,
+/// GPU rendering via will-change for layer creation
+/// preferable over hacks, not supported on ie/edge
+/// @param {string} $property [transform] - define will-change value
+/// @example scss - Usage
+///     @include force-gpu();
+
+@mixin force-gpu($property: transform) {
+  will-change: $property;
+}
+
+/// Force hardware acceleration,
+/// GPU rendering via translateZ()
+/// @deprecated
+/// @example scss - Usage
+///     @include force-gpu-alt();
+
+@mixin force-gpu-alt() {
+  transform: translateZ(0);
+}
+
+/// Force hardware acceleration,
+/// counter potential glitching & flickering in ios/safari
+/// @deprecated
+/// @example scss - Usage
+///     @include force-gpu-bfv();
+
+@mixin force-gpu-bfv() {
+  /* stylelint-disable property-no-vendor-prefix */
+  -webkit-backface-visibility: hidden;
+  -webkit-perspective: 1000;
+  /* stylelint-enable property-no-vendor-prefix */
+}
+
+/// Hide an element yet keep it available for screen readers by clipping.
+/// @group 03-mixins
+/// @example scss - Usage
+///     @include hidden-pseudo();
+
+@mixin hidden-pseudo() {
+  position: absolute;
+
+  display: block;
+
+  height: 1px;
+  width: 1px;
+
+  overflow: hidden;
+
+  // IE fallback
+  clip: rect(1px, 1px, 1px, 1px);
+
+  // modern browsers
+  clip-path: inset(1px);
+
+  white-space: nowrap;
+}
+
+/// Create a column for a layout type (e.g. 6 columns), calculate it's width based on column count and add a gutter.
+/// @group 03-mixins
+/// @param {string} $size - column count
+/// @param {string} $columns - max amount of columns
+/// @param {string} $spacing - column gutter
+/// @example scss
+///     @include column($size, $columns, $spacing);
+
+@mixin column($size, $columns, $spacing) {
+  flex: 1 1 calc(#{$size} * 100% / #{$columns} - var(--space-#{$spacing}));
+  // IE11 support: keep flex-basis separately as it does not support calc() within flex
+  flex-basis: calc(#{$size} * 100% / #{$columns} - var(--space-#{$spacing}));
+
+  width: calc(#{$size} * 100% / #{$columns} - var(--space-#{$spacing}));
+
+  &:not(:last-child) {
+    margin-right: var(--space-#{$spacing});
+  }
+}

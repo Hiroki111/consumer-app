@@ -1,0 +1,26 @@
+.main {
+  display: flex;
+
+  flex: 1 0 auto;
+  flex-flow: row nowrap;
+  justify-content: center;
+
+  background-color: var(--c-bg);
+}
+
+.content {
+  padding: var(--space-n);
+  width: 100%;
+}
+
+.side {
+  flex-shrink: 0; // prevent down-sizing
+  // fixed size by design
+  width: 344px;
+
+  // prevents sidebar to overlap modal
+  z-index: 1;
+
+  background-color: var(--c-bg);
+  box-shadow: var(--elevation-1);
+}

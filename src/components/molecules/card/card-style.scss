@@ -1,0 +1,36 @@
+/* common
+-------------------------------------------------- */
+
+.card {
+  padding: var(--space-n);
+  min-height: calc(var(--space-n) * 4);
+
+  border: var(--c-shade-light);
+  border-radius: 3px;
+
+  background: var(--c-bg);
+  box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.18), 0 4px 5px 0 rgba(0, 0, 0, 0.08),
+    0 2px 4px 0 rgba(0, 0, 0, 0.08);
+}
+
+.content {
+  color: var(--c-text-regular);
+  font-size: var(--fz-n);
+}
+
+/* /common
+-------------------------------------------------- */
+
+/* modifiers
+-------------------------------------------------- */
+
+.__clickable {
+  cursor: pointer;
+}
+
+.__is-selected {
+  background: var(--c-shade-lighter);
+}
+
+/* /modifiers
+-------------------------------------------------- */
