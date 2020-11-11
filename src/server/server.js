@@ -1,6 +1,6 @@
-import { createNextApp } from './create-next-app';
-import { createExpressApp } from './create-express-app';
-import { runtimeConfig } from './runtime-config';
+const { createNextApp } = require('./create-next-app');
+const { createExpressApp } = require('./create-express-app');
+const { runtimeConfig } = require('./runtime-config');
 const { intlPolyfill, LocaleCache } = require('../mechanisms/l10n/server');
 
 class Server {
@@ -43,4 +43,5 @@ class Server {
   }
 }
 
-export { Server };
+module.exports['default'] = Server;
+module.exports = exports['default'];

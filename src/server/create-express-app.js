@@ -1,9 +1,9 @@
-import express from 'express';
-import cookieParser from 'cookie-parser';
+const express = require('express');
+const cookieParser = require('cookie-parser');
 
-import { routes } from '../mechanisms/routing';
-import { localeMiddleware } from '../mechanisms/l10n/server/middlewares/locale';
-import { l10nFactory } from '../mechanisms/l10n/server/middlewares/l10n';
+const { routes } = require('../mechanisms/routing');
+const { localeMiddleware } = require('../mechanisms/l10n/server/middlewares/locale');
+const { l10nFactory } = require('../mechanisms/l10n/server/middlewares/l10n');
 
 function createExpressApp(nextApp, localeCache) {
   const routing = routes.getRequestHandler(nextApp);
@@ -14,4 +14,4 @@ function createExpressApp(nextApp, localeCache) {
     .use(routing);
 }
 
-export { createExpressApp };
+module.exports.createExpressApp = createExpressApp;

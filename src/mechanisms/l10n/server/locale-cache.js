@@ -1,6 +1,6 @@
-import { readFileSync } from 'fs';
-import l10nConfig from '../config';
-import { transform } from './transform-dictionary';
+const { readFileSync } = require('fs');
+const l10nConfig = require('../config');
+const { transform } = require('./transform-dictionary');
 
 class LocaleCache {
   constructor() {
@@ -18,4 +18,4 @@ class LocaleCache {
   }
 }
 
-export { LocaleCache };
+module.exports.LocaleCache = LocaleCache;

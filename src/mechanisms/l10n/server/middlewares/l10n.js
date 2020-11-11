@@ -11,4 +11,4 @@ function l10nFactory(localeCache) {
   };
 }
 
-export { l10nFactory };
+module.exports.l10nFactory = l10nFactory;

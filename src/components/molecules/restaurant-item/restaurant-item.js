@@ -6,7 +6,7 @@ import RestaurantItemModel from '../../../logic/restaurant-item/models/restauran
 
 const propTypes = {
   restaurant: PropTypes.shape({
-    id: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
     slug: PropTypes.string.isRequired,
     restaurantLogo: PropTypes.string.isRequired,

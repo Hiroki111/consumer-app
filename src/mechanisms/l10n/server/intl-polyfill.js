@@ -1,7 +1,7 @@
 // Adds support for Intl API on Node.js.
 // See: http://formatjs.io/guides/runtime-environments/#server
-import areIntlLocalesSupported from 'intl-locales-supported';
-import l10nConfig from '../../l10n/config';
+const areIntlLocalesSupported = require('intl-locales-supported');
+const l10nConfig = require('../../l10n/config');
 
 const { supportedLocales } = l10nConfig;
 
@@ -19,4 +19,4 @@ const intlPolyfill = {
   },
 };
 
-export { intlPolyfill };
+module.exports.intlPolyfill = intlPolyfill;

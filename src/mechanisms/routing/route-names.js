@@ -1,4 +1,4 @@
-export const HOME = 'home';
-export const RESTAURANT_LIST = 'restaurants';
-export const COMPONENTS = 'components';
-export const SIGNIN = 'signin';
+module.exports.HOME = 'home';
+module.exports.RESTAURANT_LIST = 'restaurants';
+module.exports.COMPONENTS = 'components';
+module.exports.SIGNIN = 'signin';

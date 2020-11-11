@@ -6,4 +6,4 @@ const runtimeConfig = {
   port: 3000,
 };
 
-export { runtimeConfig };
+module.exports.runtimeConfig = runtimeConfig;

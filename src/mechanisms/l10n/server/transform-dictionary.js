@@ -34,4 +34,4 @@ const transform = dictionary => {
   return dictionary;
 };
 
-export { transform };
+module.exports.transform = transform;

@@ -10,7 +10,7 @@ const propTypes = {
   isLoading: PropTypes.bool.isRequired,
   list: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.string.isRequired,
+      id: PropTypes.number.isRequired,
       name: PropTypes.string.isRequired,
       slug: PropTypes.string.isRequired,
       restaurantLogo: PropTypes.string.isRequired,

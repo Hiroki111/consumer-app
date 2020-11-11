@@ -1,6 +1,6 @@
-import next from 'next';
-import nextConfig from '../next.config';
-import { runtimeConfig } from './runtime-config';
+const next = require('next');
+const nextConfig = require('../next.config');
+const { runtimeConfig } = require('./runtime-config');
 
 function createNextApp() {
   return next({
@@ -10,4 +10,4 @@ function createNextApp() {
   });
 }
 
-export { createNextApp };
+module.exports.createNextApp = createNextApp;

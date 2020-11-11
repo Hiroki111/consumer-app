@@ -1,7 +1,10 @@
-import routes from './routes';
+module.exports.HOME = require('./route-names').HOME;
+module.exports.COMPONENTS = require('./route-names').COMPONENTS;
+module.exports.SIGNIN = require('./route-names').SIGNIN;
 
-export { HOME, COMPONENTS, SIGNIN } from './route-names';
-
+const routes = require('./routes');
 const { Link, Router } = routes;
 
-export { routes, Link, Router };
+module.exports.routes = routes;
+module.exports.Link = Link;
+module.exports.Router = Router;

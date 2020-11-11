@@ -4,7 +4,7 @@
   "description": "A prototype of Version 3 customer-facing frontend for Takeaway.com.",
   "main": "./src/server/index.js",
   "scripts": {
-    "build-dev-server": "npm run clean && webpack --config ./tools/build/webpack.config.js",
+    "build-dev-server": "npm run clean && node ./src/server/index.js && webpack --config ./tools/build/webpack.config.js",
     "build-prod-server": "npm run clean && cross-env NODE_ENV=production webpack --config ./tools/build/webpack.config.js",
     "dev": "npm run build-dev-server && nodemon ./build/server.js",
     "build": "npm run build-prod-server && next build ./src",

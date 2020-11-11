@@ -1,4 +1,4 @@
-import { Server } from './server';
+const Server = require('./server');
 
 async function start() {
   try {

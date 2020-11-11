@@ -31,4 +31,4 @@ function localeMiddleware(req, res, next) {
   })(req, res, next);
 }
 
-export { localeMiddleware };
+module.exports.localeMiddleware = localeMiddleware;
