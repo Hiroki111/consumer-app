@@ -8,6 +8,11 @@ import RestaurantListSortingModel from '../../../logic/restaurant-sorting/models
 import orderBy from 'lodash/orderBy';
 const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
 
+const getRestaurantListOrderedByName = restaurants => ({
+  ...restaurantList,
+  data: orderBy(RestaurantListModel.getDataFromResponse(restaurants), ['name'], ['asc']),
+});
+
 const getRestaurantListOrderedByMOV = restaurants => ({
   ...restaurantList,
   data: orderBy(
@@ -29,6 +34,8 @@ export default class RestaurantListInterface {
     switch (sortingType) {
       case RestaurantListSortingModel.TYPES.NO_SORTING:
         return restaurantList;
+      case RestaurantListSortingModel.TYPES.ALPHABETICAL_SORTING:
+        return getRestaurantListOrderedByName(restaurantList);
       case RestaurantListSortingModel.TYPES.MINIMUM_ORDER_VALUE_SORTING:
         return getRestaurantListOrderedByMOV(restaurantList);
       default:
