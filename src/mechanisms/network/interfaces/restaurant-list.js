@@ -22,6 +22,15 @@ const getRestaurantListOrderedByMOV = restaurants => ({
   ),
 });
 
+const getRestaurantListOrderedByRate = restaurants => ({
+  ...restaurantList,
+  data: orderBy(
+    RestaurantListModel.getDataFromResponse(restaurants),
+    ['info.ratings.total'],
+    ['desc'],
+  ),
+});
+
 export default class RestaurantListInterface {
   constructor(params = { name: 'Restaurants' }) {
     const { name } = params;
@@ -38,6 +47,8 @@ export default class RestaurantListInterface {
         return getRestaurantListOrderedByName(restaurantList);
       case RestaurantListSortingModel.TYPES.MINIMUM_ORDER_VALUE_SORTING:
         return getRestaurantListOrderedByMOV(restaurantList);
+      case RestaurantListSortingModel.TYPES.RATING_SORTING:
+        return getRestaurantListOrderedByRate(restaurantList);
       default:
         return restaurantList;
     }

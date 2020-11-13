@@ -8,7 +8,8 @@
         "label": "Sort by",
         "noSorting": "No sorting",
         "alphabetically": "Alphabetically",
-        "byMinimumOrderValue": "By minimum order value"
+        "byMinimumOrderValue": "By minimum order value",
+        "byRating": "By rating"
       }
     },
     "pages": {
