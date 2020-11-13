@@ -31,6 +31,14 @@ const getRestaurantListOrderedByRate = restaurants => ({
   ),
 });
 
+const getRestaurantListOrderedByDeliveryTime = restaurants => ({
+  ...restaurantList,
+  data: orderBy(
+    RestaurantListModel.getDataFromResponse(restaurants),
+    ['shipping.estimatedTime'],
+    ['asc'],
+  ),
+});
 export default class RestaurantListInterface {
   constructor(params = { name: 'Restaurants' }) {
     const { name } = params;
@@ -49,6 +57,8 @@ export default class RestaurantListInterface {
         return getRestaurantListOrderedByMOV(restaurantList);
       case RestaurantListSortingModel.TYPES.RATING_SORTING:
         return getRestaurantListOrderedByRate(restaurantList);
+      case RestaurantListSortingModel.TYPES.DELIVERY_TIME_SORTING:
+        return getRestaurantListOrderedByDeliveryTime(restaurantList);
       default:
         return restaurantList;
     }

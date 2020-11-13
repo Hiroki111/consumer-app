@@ -9,7 +9,8 @@
         "noSorting": "No sorting",
         "alphabetically": "Alphabetically",
         "byMinimumOrderValue": "By minimum order value",
-        "byRating": "By rating"
+        "byRating": "By rating",
+        "byDeliveryTime": "By delivery time"
       }
     },
     "pages": {
