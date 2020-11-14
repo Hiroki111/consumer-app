@@ -1,4 +1,5 @@
 import get from 'lodash/get';
+import intersection from 'lodash/intersection';
 
 // -------------------------------------------------------------------------------------------------
 // Event types
@@ -9,6 +10,7 @@ export const RESTAURANT_LIST_STARTED = 'RESTAURANT_LIST_STARTED';
 export const RESTAURANT_LIST_SUCCEEDED = 'RESTAURANT_LIST_SUCCEEDED';
 export const RESTAURANT_LIST_FAILED = 'RESTAURANT_LIST_FAILED';
 export const SET_DELIVERY_TYPE_FILTER = 'SET_DELIVERY_TYPE_FILTER';
+export const SET_CUISINE_FILTER = 'SET_CUISINE_FILTER';
 
 // -------------------------------------------------------------------------------------------------
 // Reducer
@@ -20,6 +22,14 @@ const initialState = {
   aggregates: {},
   filter: {
     deliveryType: null,
+    selectedCuisine: {
+      japanese: true,
+      pizza: true,
+      italian: true,
+      sushi: true,
+      burger: true,
+      french: true,
+    },
   },
   error: null,
   isLoading: true,
@@ -54,7 +64,18 @@ export function restaurantListReducer(state = initialState, action) {
     case SET_DELIVERY_TYPE_FILTER:
       return {
         ...state,
-        filter: { deliveryType: action.payload.deliveryType },
+        filter: {
+          ...state.filter,
+          deliveryType: action.payload.deliveryType,
+        },
+      };
+    case SET_CUISINE_FILTER:
+      return {
+        ...state,
+        filter: {
+          ...state.filter,
+          selectedCuisine: action.payload.selectedCuisine,
+        },
       };
     default:
       return state;
@@ -98,6 +119,13 @@ export const setDeliveryTypeFilter = deliveryType => {
   };
 };
 
+export const setCuisineFilter = selectedCuisine => {
+  return {
+    type: SET_CUISINE_FILTER,
+    payload: { selectedCuisine },
+  };
+};
+
 // -------------------------------------------------------------------------------------------------
 // Selectors
 // -------------------------------------------------------------------------------------------------
@@ -110,14 +138,19 @@ export const restaurantsListIsLoadingSelector = state => rootSelector(state).isL
 export const restaurantsListFilterSelector = state => rootSelector(state).filter;
 
 export const filteredRestaurantsListSelector = state => {
-  return rootSelector(state).list.filter(restaurant => {
-    const { deliveryType } = restaurantsListFilterSelector(state);
-    if (!deliveryType) return true;
-
-    return restaurant.shipping.type.includes(deliveryType);
-  });
+  return rootSelector(state)
+    .list.filter(restaurant => {
+      const { deliveryType } = restaurantsListFilterSelector(state);
+      return !deliveryType || restaurant.shipping.type.includes(deliveryType);
+    })
+    .filter(restaurant => {
+      const { selectedCuisine } = restaurantsListFilterSelector(state);
+      return restaurant.cuisines.some(cuisine => selectedCuisine[cuisine]);
+    });
 };
 
+export const selectedCuisineSelector = state =>
+  restaurantsListFilterSelector(state).selectedCuisine;
 // -------------------------------------------------------------------------------------------------
 // Values for the restaurant filter
 // -------------------------------------------------------------------------------------------------

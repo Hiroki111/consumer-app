@@ -1,10 +1,18 @@
 .wrapper {
+  padding-bottom: var(--space-n);
+
   span {
     font-weight: bold;
     margin-right: 10px;
+    min-width: 180px;
+    display: inline-block;
   }
 
   input {
-    margin: 0 5px;
+    margin: 0 15px 0 5px;
+  }
+
+  .cuisine {
+    text-transform: capitalize;
   }
 }
