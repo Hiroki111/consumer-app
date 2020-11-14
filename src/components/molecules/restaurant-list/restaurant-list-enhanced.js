@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
 import {
-  restaurantsListSelector,
+  filteredRestaurantsListSelector,
   restaurantsListIsLoadingSelector,
 } from '../../../logic/restaurants-list/ducks/restaurant-list';
 
@@ -9,7 +9,7 @@ import { RestaurantList } from './restaurant-list';
 
 const mapStateToProps = state => ({
   isLoading: restaurantsListIsLoadingSelector(state),
-  list: restaurantsListSelector(state),
+  list: filteredRestaurantsListSelector(state),
 });
 
 const mapDispatchToProps = {};
