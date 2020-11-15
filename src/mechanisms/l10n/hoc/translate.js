@@ -23,6 +23,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { injectIntl, FormattedMessage, FormattedHTMLMessage } from 'react-intl';
 import withIntl from './with-intl';
+import currencyCodes from '../dictionary/currencyCodes.json';
 
 export function translate(translationContext) {
   return function(DecoratedComponent) {
@@ -33,6 +34,7 @@ export function translate(translationContext) {
         this.translate = this.translate.bind(this);
         this.translateFormatted = this.translateFormatted.bind(this);
         this.translateFormattedHTML = this.translateFormattedHTML.bind(this);
+        this.translateFormattedCurrencyValue = this.translateFormattedCurrencyValue.bind(this);
       }
 
       translate(key, params) {
@@ -47,6 +49,13 @@ export function translate(translationContext) {
         return <FormattedHTMLMessage id={`${translationContext}.${key}`} values={params} />;
       }
 
+      translateFormattedCurrencyValue(value, currency) {
+        return value.toLocaleString(this.props.intl.locale, {
+          style: 'currency',
+          currency: currencyCodes[currency],
+        });
+      }
+
       render() {
         return (
           <DecoratedComponent
@@ -54,6 +63,7 @@ export function translate(translationContext) {
             translate={this.translate}
             translateFormatted={this.translateFormatted}
             translateFormattedHTML={this.translateFormattedHTML}
+            translateFormattedCurrencyValue={this.translateFormattedCurrencyValue}
           />
         );
       }

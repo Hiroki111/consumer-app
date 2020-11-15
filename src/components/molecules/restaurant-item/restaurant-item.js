@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import { Card } from '../card';
 import RestaurantItemModel from '../../../logic/restaurant-item/models/restaurant-item-model';
 
+import styles from './restaurant-item.scss';
+
 const propTypes = {
   restaurant: PropTypes.shape({
     id: PropTypes.number.isRequired,
@@ -27,24 +29,49 @@ const propTypes = {
       }).isRequired,
     }).isRequired,
   }).isRequired,
+  currency: PropTypes.shape({
+    type: PropTypes.string.isRequired,
+    denominator: PropTypes.number.isRequired,
+  }).isRequired,
+  time: PropTypes.object.isRequired,
   translate: PropTypes.func.isRequired,
+  translateFormattedCurrencyValue: PropTypes.func.isRequired,
 };
 
 export const RestaurantItem = props => {
-  const { restaurant, translate } = props;
+  const { restaurant, translate, translateFormattedCurrencyValue, currency, time } = props;
 
   const name = RestaurantItemModel.getName(restaurant);
   const logotype = RestaurantItemModel.getLogotype(restaurant);
   const cuisines = RestaurantItemModel.getCuisines(restaurant);
+  const minimumOrderValue = RestaurantItemModel.getMinOrderValue(restaurant);
+  const rating = RestaurantItemModel.getMedianRate(restaurant);
+  const estimatedTime = RestaurantItemModel.getEstimatedTime(restaurant);
+
+  const handleClickCard = restaurant => () => {
+    console.log(restaurant.slug);
+  };
 
   return (
-    <Card>
+    <Card onClick={handleClickCard(restaurant)}>
       <img src={logotype} width={72} height={72} />
       <span>{name}</span>
       <div>
         {cuisines.map(cuisine => (
           <span key={cuisine}>{cuisine} </span>
         ))}
+      </div>
+      <div className={styles.details}>
+        <span className={styles.details__item}>
+          {translate('orderFrom')}{' '}
+          {translateFormattedCurrencyValue(minimumOrderValue, currency.type)}
+        </span>
+        <span className={styles.details__item}>
+          {translate('rating')} {String(rating)}
+        </span>
+        <span className={styles.details__item}>
+          {translate('deliveryTime')} {estimatedTime} {time.type}
+        </span>
       </div>
     </Card>
   );

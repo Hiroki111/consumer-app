@@ -151,6 +151,18 @@ export const filteredRestaurantsListSelector = state => {
 
 export const selectedCuisineSelector = state =>
   restaurantsListFilterSelector(state).selectedCuisine;
+
+// EMPTY_META_DATA could be put into initialState, but I'm not 100% sure because
+// the REST API may return a different shape of object in the real situation
+const EMPTY_META_DATA = {
+  currency: { type: null, denominator: null },
+  time: { type: null, denominator: null },
+};
+export const restaurantsCurrencySelector = state =>
+  get(rootSelector(state), 'meta.currency', EMPTY_META_DATA.currency);
+export const restaurantsTimeSelector = state =>
+  get(rootSelector(state), 'meta.time', EMPTY_META_DATA.time);
+
 // -------------------------------------------------------------------------------------------------
 // Values for the restaurant filter
 // -------------------------------------------------------------------------------------------------

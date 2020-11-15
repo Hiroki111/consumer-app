@@ -4,6 +4,11 @@
       "header": {
         "home": "NL Restaurants"
       },
+      "restaurant-item": {
+        "orderFrom": "NL Order from",
+        "rating": "NL Rating",
+        "deliveryTime": "NL Delivery time"
+      },
       "restaurantSorting": {
         "label": "Sort by",
         "noSorting": "No sorting",

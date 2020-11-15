@@ -4,6 +4,11 @@
       "header": {
         "home": "Restaurants"
       },
+      "restaurant-item": {
+        "orderFrom": "Order from",
+        "rating": "Rating",
+        "deliveryTime": "Delivery time"
+      },
       "restaurantSorting": {
         "label": "Sort by",
         "noSorting": "No sorting",

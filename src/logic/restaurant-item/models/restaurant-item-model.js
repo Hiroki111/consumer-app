@@ -14,4 +14,16 @@ export default class RestaurantItemModel {
   static getCuisines(restaurantData) {
     return restaurantData.cuisines;
   }
+
+  static getMinOrderValue(restaurantData) {
+    return restaurantData.info.minimumOrderValue;
+  }
+
+  static getMedianRate(restaurantData) {
+    return restaurantData.info.ratings.score.median;
+  }
+
+  static getEstimatedTime(restaurantData) {
+    return restaurantData.shipping.estimatedTime;
+  }
 }
