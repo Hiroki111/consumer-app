@@ -1,73 +1,60 @@
-import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
-import startCase from 'lodash/startCase';
+import React from 'react';
 
-import {
-  DELIVERY_TYPE_DELIVERY,
-  DELIVERY_TYPE_PICKUP,
-} from '../../../logic/restaurants-list/ducks/restaurant-list';
+import { Heading } from '../../atoms/heading';
 
 import styles from './restaurant-filter.scss';
 
-const propTypes = {
-  setDeliveryTypeFilter: PropTypes.func.isRequired,
-};
-
 export const RestaurantFilter = props => {
-  const [deliveryType, setDeliveryType] = useState(DELIVERY_TYPE_DELIVERY);
-  const [cuisineCheckBoxes, setCuisineCheckBoxes] = useState(props.selectedCuisine);
+  const {
+    deliveryTypes,
+    cuisineTypes,
+    deliveryTypeTranslationMap,
+    cuisineTranslationMap,
+    filterRestaurantListByDeliveryType,
+    filterRestaurantListByCuisine,
+    selectedDeliveryType,
+    selectedCuisines,
+    isLoading,
+    translate,
+  } = props;
 
-  useEffect(() => {
-    props.setDeliveryTypeFilter(deliveryType);
-  }, [deliveryType]);
-
-  useEffect(() => {
-    props.setCuisineFilter(cuisineCheckBoxes);
-  }, [cuisineCheckBoxes]);
-
-  const renderCuisineOptions = () => {
-    return Object.keys(cuisineCheckBoxes).map((cuisine, i) => (
-      <label className="cuisine" key={i}>
-        {startCase(cuisine)}
-        <input
-          type="checkbox"
-          onChange={() =>
-            setCuisineCheckBoxes({ ...cuisineCheckBoxes, [cuisine]: !cuisineCheckBoxes[cuisine] })
-          }
-          checked={cuisineCheckBoxes[cuisine]}
-          value={cuisineCheckBoxes[cuisine]}
-        />
-      </label>
-    ));
-  };
+  const onChangeDeliveryType = event => filterRestaurantListByDeliveryType(event.target.value);
+  const onChangeCuisine = event => filterRestaurantListByCuisine(event.target.value);
 
   return (
-    <div className={styles.wrapper}>
-      <div>
-        <span>Select delivery method</span>
-        <label>
-          Delivery
+    <div className={styles['wrapper']}>
+      <Heading level={5} align="left">
+        {translate('deliveryTypeLabel')}
+      </Heading>
+      {deliveryTypes.map(deliveryType => (
+        <label key={deliveryType}>
           <input
+            disabled={isLoading}
             type="radio"
-            onChange={() => setDeliveryType(DELIVERY_TYPE_DELIVERY)}
-            checked={deliveryType === DELIVERY_TYPE_DELIVERY}
-          />
+            name="restaurantDeliveryType"
+            value={deliveryType}
+            onChange={onChangeDeliveryType}
+            checked={selectedDeliveryType === deliveryType}
+          />{' '}
+          {translate(deliveryTypeTranslationMap[deliveryType])}
         </label>
-        <label>
-          Pickup
+      ))}
+      <Heading level={5} align="left">
+        Select cuisines
+      </Heading>
+      {cuisineTypes.map(cuisineName => (
+        <label key={cuisineName}>
           <input
-            type="radio"
-            onChange={() => setDeliveryType(DELIVERY_TYPE_PICKUP)}
-            checked={deliveryType === DELIVERY_TYPE_PICKUP}
-          />
+            disabled={isLoading}
+            type="checkbox"
+            name="restaurantCuisine"
+            value={cuisineName}
+            onChange={onChangeCuisine}
+            checked={selectedCuisines[cuisineName]}
+          />{' '}
+          {translate(cuisineTranslationMap[cuisineName])}
         </label>
-      </div>
-      <div>
-        <span>Select cuisines</span>
-        {renderCuisineOptions()}
-      </div>
+      ))}
     </div>
   );
 };
-
-RestaurantFilter.propTypes = propTypes;

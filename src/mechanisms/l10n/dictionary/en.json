@@ -16,6 +16,18 @@
         "byMinimumOrderValue": "By minimum order value",
         "byRating": "By rating",
         "byDeliveryTime": "By delivery time"
+      },
+      "restaurantFilter": {
+        "deliveryTypeLabel": "Select delivery method",
+        "delivery": "Delivery",
+        "pickup": "Pickup",
+        "cuisineLabel": "Select cuisines",
+        "japanese": "Japanese",
+        "pizza": "Pizza",
+        "italian": "Italian",
+        "sushi": "Sushi",
+        "burger": "Burger",
+        "french": "French"
       }
     },
     "pages": {

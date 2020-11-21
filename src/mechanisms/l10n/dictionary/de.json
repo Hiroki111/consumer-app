@@ -10,12 +10,24 @@
         "deliveryTime": "DE Delivery time"
       },
       "restaurantSorting": {
-        "label": "Sort by",
-        "noSorting": "No sorting",
-        "alphabetically": "Alphabetically",
-        "byMinimumOrderValue": "By minimum order value",
-        "byRating": "By rating",
-        "byDeliveryTime": "By delivery time"
+        "label": "DE Sort by",
+        "noSorting": "DE No sorting",
+        "alphabetically": "DE Alphabetically",
+        "byMinimumOrderValue": "DE By minimum order value",
+        "byRating": "DE By rating",
+        "byDeliveryTime": "DE By delivery time"
+      },
+      "restaurantFilter": {
+        "deliveryTypeLabel": "DE Select delivery method",
+        "delivery": "DE Delivery",
+        "pickup": "DE Pickup",
+        "cuisineLabel": "DE Select cuisines",
+        "japanese": "DE Japanese",
+        "pizza": "DE Pizza",
+        "italian": "DE Italian",
+        "sushi": "DE Sushi",
+        "burger": "DE Burger",
+        "french": "DE French"
       }
     },
     "pages": {

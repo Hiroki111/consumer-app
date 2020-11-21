@@ -10,12 +10,24 @@
         "deliveryTime": "NL Delivery time"
       },
       "restaurantSorting": {
-        "label": "Sort by",
-        "noSorting": "No sorting",
-        "alphabetically": "Alphabetically",
-        "byMinimumOrderValue": "By minimum order value",
-        "byRating": "By rating",
-        "byDeliveryTime": "By delivery time"
+        "label": "NL Sort by",
+        "noSorting": "NL No sorting",
+        "alphabetically": "NL Alphabetically",
+        "byMinimumOrderValue": "NL By minimum order value",
+        "byRating": "NL By rating",
+        "byDeliveryTime": "NL By delivery time"
+      },
+      "restaurantFilter": {
+        "deliveryTypeLabel": "NL Select delivery method",
+        "delivery": "NL Delivery",
+        "pickup": "NL Pickup",
+        "cuisineLabel": "NL Select cuisines",
+        "japanese": "NL Japanese",
+        "pizza": "NL Pizza",
+        "italian": "NL Italian",
+        "sushi": "NL Sushi",
+        "burger": "NL Burger",
+        "french": "NL French"
       }
     },
     "pages": {
