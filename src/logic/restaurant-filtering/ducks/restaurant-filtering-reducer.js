@@ -12,7 +12,7 @@ export const RESTAURANT_LIST_CUISINE_CHANGED = 'RESTAURANT_LIST_CUISINE_CHANGED'
 // Reducer
 // -------------------------------------------------------------------------------------------------
 
-const initialSelectedCuisine = cuisineNames =>
+export const initialSelectedCuisine = cuisineNames =>
   cuisineNames.reduce((state, cusineName) => ({ ...state, [cusineName]: true }), {});
 
 const initialState = {

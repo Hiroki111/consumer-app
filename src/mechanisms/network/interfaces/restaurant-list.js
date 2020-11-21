@@ -27,7 +27,7 @@ const getRestaurantListOrderedByRate = restaurants => ({
   ...restaurantList,
   data: orderBy(
     RestaurantListModel.getDataFromResponse(restaurants),
-    ['info.ratings.total'],
+    ['info.ratings.score.median'],
     ['desc'],
   ),
 });
@@ -58,21 +58,19 @@ export default class RestaurantListInterface {
   }
 
   static async fetch({ sortingType, deliveryType, selectedCuisine }) {
-    await delay(2000);
+    await delay(0);
 
     const selectedCuisineMap = getSelectedCuisineMapForFiltering(selectedCuisine);
-
     const filteredRestaurantList = {
       ...restaurantList,
       data: restaurantList.data
-        .filter(restaurant => {
-          return (
+        .filter(
+          restaurant =>
             !deliveryType ||
             restaurant.shipping.type.includes(
               RestaurantListFiltering.DELIVERY_TRANSLATIONS_MAP[deliveryType],
-            )
-          );
-        })
+            ),
+        )
         .filter(restaurant => restaurant.cuisines.some(cuisine => selectedCuisineMap[cuisine])),
     };
 
