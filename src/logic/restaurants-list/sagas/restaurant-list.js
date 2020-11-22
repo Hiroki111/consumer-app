@@ -14,6 +14,7 @@ import {
 import {
   RESTAURANT_LIST_DELIVERY_TYPE_CHANGED,
   RESTAURANT_LIST_CUISINE_CHANGED,
+  RESTAURANT_LIST_DELIVERY_TYPE_AND_CUISINE_CHANGED,
   selectedDeliveryTypeSelector,
   selectedCuisineSelector,
 } from '../../restaurant-filtering/ducks/restaurant-filtering-reducer';
@@ -52,4 +53,5 @@ export function* restaurantsListSaga() {
   yield takeEvery(RESTAURANT_LIST_SORTING_CHANGED, restaurantsListFetchHandler);
   yield takeEvery(RESTAURANT_LIST_DELIVERY_TYPE_CHANGED, restaurantsListFetchHandler);
   yield takeEvery(RESTAURANT_LIST_CUISINE_CHANGED, restaurantsListFetchHandler);
+  yield takeEvery(RESTAURANT_LIST_DELIVERY_TYPE_AND_CUISINE_CHANGED, restaurantsListFetchHandler);
 }

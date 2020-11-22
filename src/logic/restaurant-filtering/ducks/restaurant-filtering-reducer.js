@@ -7,6 +7,8 @@ import RestaurantListFiltering from '../models/restaurant-filtering-model';
 
 export const RESTAURANT_LIST_DELIVERY_TYPE_CHANGED = 'RESTAURANT_LIST_DELIVERY_TYPE_CHANGED';
 export const RESTAURANT_LIST_CUISINE_CHANGED = 'RESTAURANT_LIST_CUISINE_CHANGED';
+export const RESTAURANT_LIST_DELIVERY_TYPE_AND_CUISINE_CHANGED =
+  'RESTAURANT_LIST_DELIVERY_TYPE_AND_CUISINE_CHANGED';
 
 // -------------------------------------------------------------------------------------------------
 // Reducer
@@ -28,13 +30,15 @@ export function restaurantListFiltering(state = initialState, action) {
         deliveryType: action.payload.deliveryType,
       };
     case RESTAURANT_LIST_CUISINE_CHANGED:
-      const selectedCuisine = state.selectedCuisine[action.payload.cuisineName];
       return {
         ...state,
-        selectedCuisine: {
-          ...state.selectedCuisine,
-          [action.payload.cuisineName]: !selectedCuisine,
-        },
+        selectedCuisine: action.payload.cuisineObj,
+      };
+    case RESTAURANT_LIST_DELIVERY_TYPE_AND_CUISINE_CHANGED:
+      return {
+        ...state,
+        deliveryType: action.payload.deliveryType,
+        selectedCuisine: action.payload.cuisineObj,
       };
     default:
       return state;
@@ -52,13 +56,19 @@ export const filterRestaurantListByDeliveryType = deliveryType => {
   };
 };
 
-export const filterRestaurantListByCuisine = cuisineName => {
+export const filterRestaurantListByCuisine = cuisineObj => {
   return {
     type: RESTAURANT_LIST_CUISINE_CHANGED,
-    payload: { cuisineName },
+    payload: { cuisineObj },
   };
 };
 
+export const filterRestaurantListByDeliveryTypeAndCuisine = (deliveryType, cuisineObj) => {
+  return {
+    type: RESTAURANT_LIST_DELIVERY_TYPE_AND_CUISINE_CHANGED,
+    payload: { deliveryType, cuisineObj },
+  };
+};
 // -------------------------------------------------------------------------------------------------
 // Selectors
 // -------------------------------------------------------------------------------------------------

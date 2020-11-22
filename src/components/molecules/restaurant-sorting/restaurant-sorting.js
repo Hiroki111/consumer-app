@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { Heading } from '../../atoms/heading';
 
@@ -12,9 +12,28 @@ export const RestaurantSorting = props => {
     sortRestaurantList,
     isLoading,
     translate,
+    withApplyButton,
+    onClickApply,
   } = props;
 
-  const onChangeSorting = event => sortRestaurantList(event.target.value);
+  const [sortState, setSortState] = useState(selectedSortingType);
+
+  const handleApply = e => {
+    sortRestaurantList(sortState);
+    onClickApply();
+  };
+
+  const onChangeSorting = event => {
+    if (!withApplyButton) sortRestaurantList(event.target.value);
+
+    setSortState(event.target.value);
+  };
+
+  const showApplyButton = () => {
+    if (!withApplyButton) return null;
+
+    return <button onClick={handleApply}>Apply</button>;
+  };
 
   return (
     <div>
@@ -29,11 +48,12 @@ export const RestaurantSorting = props => {
             name="restaurantSorting"
             value={sortingType}
             onChange={onChangeSorting}
-            checked={selectedSortingType === sortingType}
+            checked={sortState === sortingType}
           />{' '}
           {translate(translationMap[sortingType])}
         </label>
       ))}
+      {showApplyButton()}
     </div>
   );
 };

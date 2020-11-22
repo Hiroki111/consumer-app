@@ -8,6 +8,7 @@ import {
   selectedCuisineSelector,
   filterRestaurantListByDeliveryType,
   filterRestaurantListByCuisine,
+  filterRestaurantListByDeliveryTypeAndCuisine,
 } from '../../../logic/restaurant-filtering/ducks/restaurant-filtering-reducer';
 
 import RestaurantListFiltering from '../../../logic/restaurant-filtering/models/restaurant-filtering-model';
@@ -26,8 +27,9 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   filterRestaurantListByDeliveryType: deliveryType =>
     dispatch(filterRestaurantListByDeliveryType(deliveryType)),
-  filterRestaurantListByCuisine: cuisineName =>
-    dispatch(filterRestaurantListByCuisine(cuisineName)),
+  filterRestaurantListByCuisine: cuisineObj => dispatch(filterRestaurantListByCuisine(cuisineObj)),
+  filterRestaurantListByDeliveryTypeAndCuisine: (deliveryType, cuisineObj) =>
+    dispatch(filterRestaurantListByDeliveryTypeAndCuisine(deliveryType, cuisineObj)),
 });
 
 export const RestaurantFilterEnhanced = flow(
