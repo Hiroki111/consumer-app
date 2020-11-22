@@ -131,7 +131,7 @@ class Modal extends Component {
         overlayClassName={overlayClassName}
         portalClassName={wrapperClassNames}
         bodyOpenClassName={bodyClassName}
-        isOpen={isOpen && !ExecutionEnvironment.canUseDOM}
+        isOpen={isOpen && ExecutionEnvironment.canUseDOM}
         onAfterOpen={onAfterOpenHandler}
         onRequestClose={onRequestCloseHandler}
         contentLabel={contentLabel}
