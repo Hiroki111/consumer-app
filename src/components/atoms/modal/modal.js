@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import ReactModal from 'react-modal';
 import classnames from 'clsx';
 import { noop, uniqueId } from 'lodash';
+import ExecutionEnvironment from 'exenv';
 
 import { setBodyHasScrollbarBehavior } from '../../../helpers/scrollbar-width-behavior';
 
@@ -130,7 +131,7 @@ class Modal extends Component {
         overlayClassName={overlayClassName}
         portalClassName={wrapperClassNames}
         bodyOpenClassName={bodyClassName}
-        isOpen={isOpen}
+        isOpen={isOpen && !ExecutionEnvironment.canUseDOM}
         onAfterOpen={onAfterOpenHandler}
         onRequestClose={onRequestCloseHandler}
         contentLabel={contentLabel}
