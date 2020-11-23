@@ -58,7 +58,7 @@ export default class RestaurantListInterface {
   }
 
   static async fetch({ sortingType, deliveryType, selectedCuisine }) {
-    await delay(0);
+    await delay(2000);
 
     const selectedCuisineMap = getSelectedCuisineMapForFiltering(selectedCuisine);
     const filteredRestaurantList = {
